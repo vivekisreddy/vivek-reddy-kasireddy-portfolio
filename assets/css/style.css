@@ -722,40 +722,57 @@ main {
 }
 
 
-/**
- * #clients 
- */
-
-.clients { margin-bottom: 15px; }
-
-.clients-list {
+.clients-scroll-wrapper {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 15px;
-  margin: 0 -15px;
-  padding: 25px;
-  padding-bottom: 25px;
   overflow-x: auto;
-  scroll-behavior: smooth;
-  overscroll-behavior-inline: contain;
-  scroll-snap-type: inline mandatory;
-  scroll-padding-inline: 25px;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+  scroll-behavior: smooth; /* smooth scrolling */
+}
+
+.clients-scroll-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.clients-scroll-wrapper::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.clients-scroll-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }
 
 .clients-item {
-  min-width: 50%;
-  scroll-snap-align: start;
+  flex: 0 0 auto; /* prevents shrinking, keeps card width fixed */
 }
 
-.clients-item img {
+.company-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 220px; /* fixed card width */
+  text-align: center;
+  padding: 1rem;
+}
+
+.company-banner {
   width: 100%;
-  filter: grayscale(1);
-  transition: var(--transition-1);
+  height: 100px; /* same height for all logos */
+  object-fit: contain; /* scale logo nicely without cropping */
+  margin-bottom: 0.75rem;
 }
 
-.clients-item img:hover { filter: grayscale(0); }
+.company-card strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
 
+.company-card p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
+}
 
 
 
