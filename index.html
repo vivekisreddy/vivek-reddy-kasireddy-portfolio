@@ -96,20 +96,6 @@
           <li class="contact-item">
 
             <div class="icon-box">
-              <ion-icon name="calendar-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Birthday</p>
-
-              <time datetime="1982-06-23">Feburary 1st, 2004</time>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
               <ion-icon name="location-outline"></ion-icon>
             </div>
 
@@ -428,7 +414,16 @@
 
         <header>
           <h2 class="h2 article-title">Resume</h2>
+          <a href="./assets/pdf/Vivek_Reddy_Kasireddy_Resume.pdf"
+             download
+             class="resume-download-btn">
+
+            <ion-icon name="download-outline"></ion-icon>
+            Download Resume (PDF)
+          </a>
+
         </header>
+
 
         <!-- Education Section -->
         <section class="timeline">
@@ -509,6 +504,30 @@
               </p>
             </li>
 
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">École Polytechnique Fédérale de Lausanne (EPFL) | Product Developer – Search Tool UI</h4>
+
+              <span>March 2025 – May 2025 | Lausanne, Switzerland</span>
+
+              <p class="timeline-text">
+                Developed a frontend search interface integrated with a campus-wide research database, focusing on usability, query optimization, and efficient information retrieval for academic publications and research data.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Mechanical Engineering Department, WPI | Back-End Developer (Part-Time)</h4>
+
+              <span>Sept. 2024 – Feb. 2025</span>
+
+              <p class="timeline-text">
+                Built a lab access management web application using HTML, CSS, and JavaScript to streamline equipment usage and scheduling for the Mechanical Engineering Department.
+              </p>
+
+            </li>
+
           </ol>
 
         </section>
@@ -516,51 +535,35 @@
         <!-- Skills Section -->
         <section class="skill">
 
-          <h3 class="h3 skills-title">My skills</h3>
+          <h3 class="h3 skills-title">Technical Skills</h3>
 
-          <ul class="skills-list content-card">
+          <div class="skills-list content-card">
 
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">C++ / Python / MATLAB</h5>
-                <data value="95">95%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 95%;"></div>
-              </div>
-            </li>
+            <div class="skills-category">
+              <h4 class="h4">Primary Languages</h4>
+              <p>Python • C++ • C • Verilog • MATLAB</p>
+              <span>Extensive project and coursework experience including robotics software, embedded systems, FPGA design, and machine learning.</span>
+            </div>
 
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Embedded Systems & FPGA Design</h5>
-                <data value="90">90%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 90%;"></div>
-              </div>
-            </li>
+            <div class="skills-category">
+              <h4 class="h4">Proficient</h4>
+              <p>Java • JavaScript • TypeScript • SQL</p>
+              <span>Used for software systems, web applications, and backend development.</span>
+            </div>
 
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Robotics & Controls</h5>
-                <data value="85">85%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 85%;"></div>
-              </div>
-            </li>
+            <div class="skills-category">
+              <h4 class="h4">Robotics & Embedded Systems</h4>
+              <p>Embedded Systems • FPGA Design • SPI • LVDS • Control Systems • LiDAR</p>
+              <span>Experience integrating hardware and software for robotic platforms and autonomous systems.</span>
+            </div>
 
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Web & Software Development</h5>
-                <data value="80">80%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 80%;"></div>
-              </div>
-            </li>
+            <div class="skills-category">
+              <h4 class="h4">Software & ML Tools</h4>
+              <p>Linux • Git • OpenCV • PyTorch • TensorFlow • AWS</p>
+              <span>Tools used for robotics perception, machine learning, and software infrastructure.</span>
+            </div>
 
-          </ul>
+          </div>
 
         </section>
 
@@ -570,12 +573,8 @@
 
 
       <!--
-        - #PORTFOLIO
-      -->
-
-      <!--
-        - #PORTFOLIO
-      -->
+  - #PORTFOLIO
+-->
 
       <article class="portfolio" data-page="portfolio">
 
@@ -585,7 +584,7 @@
 
         <section class="projects">
 
-          <!-- Tabs -->
+          <!-- Filter Tabs -->
           <ul class="filter-list">
 
             <li class="filter-item">
@@ -606,7 +605,9 @@
 
           </ul>
 
-          <!-- Select for small screens -->
+
+          <!-- Mobile Filter Dropdown -->
+
           <div class="filter-select-box">
 
             <button class="filter-select" data-select>
@@ -620,158 +621,302 @@
             </button>
 
             <ul class="select-list">
+
               <li class="select-item"><button data-select-item>All</button></li>
               <li class="select-item"><button data-select-item>Robotics Engineering</button></li>
               <li class="select-item"><button data-select-item>Software & CS</button></li>
               <li class="select-item"><button data-select-item>Electrical</button></li>
+
             </ul>
 
           </div>
 
-          <!-- Project Items -->
+
+
+          <!-- PROJECT LIST -->
+
           <ul class="project-list">
 
-            <!-- Robotics Engineering Projects -->
+            <!-- Robotics Projects -->
+
             <li class="project-item active" data-filter-item data-category="robotics engineering">
-              <a href="#">
+
+              <div class="project-card" data-project="pear">
+
                 <figure class="project-img">
+
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
+
                   <img src="./assets/images/robotics-pear.jpg" alt="PeAR Depth Estimation" loading="lazy">
+
                 </figure>
+
                 <h3 class="project-title">PeAR Depth Estimation</h3>
+
                 <p class="project-category">Robotics Engineering</p>
-              </a>
+
+              </div>
+
             </li>
 
+
+
             <li class="project-item active" data-filter-item data-category="robotics engineering">
-              <a href="#">
+
+              <div class="project-card" data-project="serial-arm">
+
                 <figure class="project-img">
+
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-                  <img src="./assets/images/industrial-arm.jpg" alt="Industrial Serial-Arm Robot" loading="lazy">
+
+                  <img src="./assets/images/industrial-arm.jpg" alt="Industrial Serial Arm Robot" loading="lazy">
+
                 </figure>
+
                 <h3 class="project-title">Industrial Serial-Arm Robot Manipulation</h3>
+
                 <p class="project-category">Robotics Engineering</p>
-              </a>
+
+              </div>
+
             </li>
 
+
+
             <li class="project-item active" data-filter-item data-category="robotics engineering">
-              <a href="#">
+
+              <div class="project-card" data-project="maze-runner">
+
                 <figure class="project-img">
+
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
+
                   <img src="./assets/images/escape-room-robot.jpg" alt="Escape Room Maze Runner Robot" loading="lazy">
+
                 </figure>
+
                 <h3 class="project-title">Escape Room Maze Runner Robot</h3>
+
                 <p class="project-category">Robotics Engineering</p>
-              </a>
+
+              </div>
+
             </li>
 
+
+
             <li class="project-item active" data-filter-item data-category="robotics engineering">
-              <a href="#">
+
+              <div class="project-card" data-project="solar-robot">
+
                 <figure class="project-img">
+
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-                  <img src="./assets/images/solar-panel-robot.jpg" alt="Autonomous Solar Panel Replacement Robot" loading="lazy">
+
+                  <img src="./assets/images/solar-panel-robot.jpg" alt="Autonomous Solar Panel Robot" loading="lazy">
+
                 </figure>
+
                 <h3 class="project-title">Autonomous Solar Panel Replacement Robot</h3>
+
                 <p class="project-category">Robotics Engineering</p>
-              </a>
+
+              </div>
+
             </li>
+
+
 
             <!-- Software & CS Projects -->
+
             <li class="project-item active" data-filter-item data-category="software & cs">
-              <a href="#">
+
+              <div class="project-card" data-project="mudra-ai">
+
                 <figure class="project-img">
+
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
+
                   <img src="./assets/images/mudra-ai.jpg" alt="Mudra AI ASL Translator" loading="lazy">
+
                 </figure>
+
                 <h3 class="project-title">Mudra AI – ASL Gesture Translator</h3>
+
                 <p class="project-category">Software & CS</p>
-              </a>
+
+              </div>
+
             </li>
 
+
+
             <li class="project-item active" data-filter-item data-category="software & cs">
-              <a href="#">
+
+              <div class="project-card" data-project="traffic-sign">
+
                 <figure class="project-img">
+
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
+
                   <img src="./assets/images/traffic-sign.jpg" alt="Traffic Sign Classification" loading="lazy">
+
                 </figure>
+
                 <h3 class="project-title">Traffic Sign Classification</h3>
+
                 <p class="project-category">Software & CS</p>
-              </a>
+
+              </div>
+
             </li>
 
+
+
             <li class="project-item active" data-filter-item data-category="software & cs">
-              <a href="#">
+
+              <div class="project-card" data-project="tables4u">
+
                 <figure class="project-img">
+
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
+
                   <img src="./assets/images/tables4u.jpg" alt="Tables4U Restaurant Booking System" loading="lazy">
+
                 </figure>
+
                 <h3 class="project-title">Tables4U Restaurant Booking System</h3>
+
                 <p class="project-category">Software & CS</p>
-              </a>
+
+              </div>
+
             </li>
 
+
+
             <li class="project-item active" data-filter-item data-category="software & cs">
-              <a href="#">
+
+              <div class="project-card" data-project="http-server">
+
                 <figure class="project-img">
+
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-                  <img src="./assets/images/http-client-server.jpg" alt="HTTP Client & Server" loading="lazy">
+
+                  <img src="./assets/images/http-client-server.jpg" alt="HTTP Client Server" loading="lazy">
+
                 </figure>
+
                 <h3 class="project-title">HTTP Client & Server with Priority Scheduling</h3>
+
                 <p class="project-category">Software & CS</p>
-              </a>
+
+              </div>
+
             </li>
+
+
 
             <!-- Electrical Projects -->
-            <li class="project-item active" data-filter-item data-category="electrical">
-              <a href="#">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/brooks-test-automation.jpg" alt="Brooks Automation Test Automation" loading="lazy">
-                </figure>
-                <h3 class="project-title">Brooks Automation | Test Automation Engineer</h3>
-                <p class="project-category">Electrical</p>
-              </a>
-            </li>
 
             <li class="project-item active" data-filter-item data-category="electrical">
-              <a href="#">
+
+              <div class="project-card" data-project="brooks-test">
+
                 <figure class="project-img">
+
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-                  <img src="./assets/images/brooks-intern.jpg" alt="Brooks Automation Intern" loading="lazy">
+
+                  <img src="./assets/images/brooks-test-automation.jpg" alt="Brooks Automation Test Automation" loading="lazy">
+
                 </figure>
-                <h3 class="project-title">Brooks Automation | Automation & Lab Test Engineering Intern</h3>
+
+                <h3 class="project-title">Brooks Automation | Test Automation Engineer</h3>
+
                 <p class="project-category">Electrical</p>
-              </a>
+
+              </div>
+
+            </li>
+
+
+
+            <li class="project-item active" data-filter-item data-category="electrical">
+
+              <div class="project-card" data-project="brooks-intern">
+
+                <figure class="project-img">
+
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/brooks-intern.jpg" alt="Brooks Automation Intern" loading="lazy">
+
+                </figure>
+
+                <h3 class="project-title">Brooks Automation | Automation & Lab Test Engineering Intern</h3>
+
+                <p class="project-category">Electrical</p>
+
+              </div>
+
             </li>
 
           </ul>
 
         </section>
 
+
+
+        <!-- PROJECT MODAL -->
+
+        <div class="project-modal" id="projectModal">
+
+          <div class="modal-content">
+
+            <button class="modal-close">
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+
+            <h2 id="modal-title">Project Title</h2>
+
+            <div class="modal-media">
+              <img id="modal-image" src="" alt="">
+            </div>
+
+            <p id="modal-description">
+              Project description placeholder.
+            </p>
+
+            <div class="modal-links">
+              <a id="modal-github" target="_blank">GitHub</a>
+              <a id="modal-demo" target="_blank">Live Demo</a>
+            </div>
+
+          </div>
+
+        </div>
+
       </article>
-
-
-
 
       <!--
         - #CONTACT

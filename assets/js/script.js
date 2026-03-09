@@ -152,3 +152,145 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
+
+// MODAL ELEMENTS
+
+const modal = document.getElementById("projectModal");
+const modalClose = document.querySelector(".modal-close");
+
+const modalTitle = document.getElementById("modal-title");
+const modalImage = document.getElementById("modal-image");
+const modalDescription = document.getElementById("modal-description");
+const modalGithub = document.getElementById("modal-github");
+const modalDemo = document.getElementById("modal-demo");
+
+
+// PROJECT DATA (PLACEHOLDERS FOR NOW)
+
+const projects = {
+
+  pear: {
+    title: "PeAR Depth Estimation",
+    image: "./assets/images/robotics-pear.jpg",
+    description: "Depth estimation robotics project placeholder description.",
+    github: "#",
+    demo: "#"
+  },
+
+  "serial-arm": {
+    title: "Industrial Serial-Arm Robot Manipulation",
+    image: "./assets/images/industrial-arm.jpg",
+    description: "Robotic manipulation system placeholder description.",
+    github: "#",
+    demo: "#"
+  },
+
+  "maze-runner": {
+    title: "Escape Room Maze Runner Robot",
+    image: "./assets/images/escape-room-robot.jpg",
+    description: "Autonomous maze navigation robot placeholder description.",
+    github: "#",
+    demo: "#"
+  },
+
+  "solar-robot": {
+    title: "Autonomous Solar Panel Replacement Robot",
+    image: "./assets/images/solar-panel-robot.jpg",
+    description: "Autonomous solar panel maintenance robot placeholder.",
+    github: "#",
+    demo: "#"
+  },
+
+  "mudra-ai": {
+    title: "Mudra AI – ASL Gesture Translator",
+    image: "./assets/images/mudra-ai.jpg",
+    description: "AI-based American Sign Language gesture recognition system.",
+    github: "#",
+    demo: "#"
+  },
+
+  "traffic-sign": {
+    title: "Traffic Sign Classification",
+    image: "./assets/images/traffic-sign.jpg",
+    description: "Machine learning model for traffic sign recognition.",
+    github: "#",
+    demo: "#"
+  },
+
+  tables4u: {
+    title: "Tables4U Restaurant Booking System",
+    image: "./assets/images/tables4u.jpg",
+    description: "Restaurant reservation system built with web technologies.",
+    github: "#",
+    demo: "#"
+  },
+
+  "http-server": {
+    title: "HTTP Client & Server with Priority Scheduling",
+    image: "./assets/images/http-client-server.jpg",
+    description: "Custom HTTP server implementation with request prioritization.",
+    github: "#",
+    demo: "#"
+  },
+
+  "brooks-test": {
+    title: "Brooks Automation Test Automation Engineer",
+    image: "./assets/images/brooks-test-automation.jpg",
+    description: "Industrial automation test infrastructure and tooling.",
+    github: "#",
+    demo: "#"
+  },
+
+  "brooks-intern": {
+    title: "Brooks Automation Lab Test Engineering Intern",
+    image: "./assets/images/brooks-intern.jpg",
+    description: "Automation and validation for semiconductor robotics systems.",
+    github: "#",
+    demo: "#"
+  }
+
+};
+
+
+
+// CLICK PROJECT CARD
+
+document.querySelectorAll(".project-card").forEach(card => {
+
+  card.addEventListener("click", () => {
+
+    const projectID = card.dataset.project;
+
+    const project = projects[projectID];
+
+    modalTitle.textContent = project.title;
+    modalImage.src = project.image;
+    modalDescription.textContent = project.description;
+    modalGithub.href = project.github;
+    modalDemo.href = project.demo;
+
+    modal.classList.add("active");
+
+  });
+
+});
+
+
+
+// CLOSE MODAL BUTTON
+
+modalClose.addEventListener("click", () => {
+  modal.classList.remove("active");
+});
+
+
+
+// CLOSE IF CLICK OUTSIDE MODAL
+
+modal.addEventListener("click", (e) => {
+
+  if (e.target === modal) {
+    modal.classList.remove("active");
+  }
+
+});
