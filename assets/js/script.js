@@ -219,9 +219,9 @@ const projects = {
 
   tables4u: {
     title: "Tables4U Restaurant Booking System",
-    image: "./assets/images/tables4u.jpg",
+    image: "./assets/projects/tables4u/thumbnail.png",
     description: "Restaurant reservation system built with web technologies.",
-    github: "#",
+    github: "https://github.com/vivekisreddy/Tables4U.git",
     demo: "#"
   },
 
@@ -245,6 +245,20 @@ const projects = {
     title: "Brooks Automation Lab Test Engineering Intern",
     image: "./assets/images/brooks-intern.jpg",
     description: "Automation and validation for semiconductor robotics systems.",
+    github: "#",
+    demo: "#"
+  },
+
+  choremates: {
+    title: "ChoreMates – Roommate Coordination App",
+    description: "Full-stack roommate services platform with authentication, shared expense tracking, and collaborative grocery management built using React.js and AWS.",
+    github: "#",
+    demo: "#"
+  },
+
+  "ai-path-planning": {
+    title: "AI Path Planning & Heuristic Optimization",
+    description: "Implemented A* heuristic search for robot navigation in 2D grid environments and designed hill-climbing variants to analyze convergence behavior under obstacle constraints.",
     github: "#",
     demo: "#"
   }
