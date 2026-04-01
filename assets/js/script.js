@@ -153,6 +153,29 @@ for (let i = 0; i < navigationLinks.length; i++) {
   });
 }
 
+function renderMedia(mediaArray) {
+  const mediaContainer = document.getElementById("modal-media");
+  mediaContainer.innerHTML = "";
+
+  mediaArray.forEach(item => {
+    if (item.type === "image") {
+      const img = document.createElement("img");
+      img.src = item.src;
+      img.alt = item.alt || "";
+      mediaContainer.appendChild(img);
+    }
+
+    if (item.type === "video") {
+      const iframe = document.createElement("iframe");
+      iframe.src = item.src;
+      iframe.width = "100%";
+      iframe.height = "315";
+      iframe.allowFullscreen = true;
+      mediaContainer.appendChild(iframe);
+    }
+  });
+}
+
 // MODAL ELEMENTS
 
 const modal = document.getElementById("projectModal");
@@ -203,10 +226,44 @@ const projects = {
 
   "mudra-ai": {
     title: "Mudra AI – ASL Gesture Translator",
-    image: "./assets/images/mudra-ai.jpg",
-    description: "AI-based American Sign Language gesture recognition system.",
-    github: "#",
-    demo: "#"
+
+    image: "./assets/projects/mudra-ai/thumbnail.png",
+
+    media: [
+      { type: "image", src: "./assets/projects/mudra-ai/2.png" },
+      { type: "image", src: "./assets/projects/mudra-ai/3.png" },
+      { type: "image", src: "./assets/projects/mudra-ai/5.png" },
+      { type: "video", src: "https://www.youtube.com/embed/7l3xeGlZw1U" }
+    ],
+
+
+    description: `
+    Mudra AI is a real-time American Sign Language (ASL) translation system that converts hand gestures into fluent English text and natural speech.
+    
+    Built as a full-stack AI pipeline, the system integrates computer vision, sequence modeling, large language models, and speech synthesis to enable seamless communication between Deaf/Hard-of-Hearing and hearing individuals.
+    
+    • Developed a real-time gesture recognition pipeline using MediaPipe Holistic, extracting 144 landmark-based features per frame (hands + pose)
+    • Trained an LSTM-based TensorFlow model for temporal gesture classification, enabling accurate recognition of ASL letters and short phrases
+    • Integrated Google Gemini API to transform raw gesture outputs into grammatically correct natural language
+    • Implemented ElevenLabs text-to-speech for expressive, human-like voice output
+    • Designed an interactive Streamlit interface for live camera input, text display, and audio playback
+    
+    Key Challenges & Solutions:
+    • Built a custom ASL dataset due to lack of high-quality 3D motion data
+    • Improved robustness with temporal smoothing, confidence filtering, and landmark normalization
+    • Reduced inference latency using TensorFlow Lite and optimized pipeline execution
+    
+    Impact:
+    Delivered a fully functional CV → ML → LLM → Speech pipeline within 24 hours at HackUMass XIII, demonstrating real-time translation of ASL into natural speech.
+    
+    Future Work:
+    • Expand dataset to full conversational ASL
+    • Add speech-to-sign reverse translation
+    • Deploy on mobile / AR wearable platforms
+    `,
+
+    github: "https://github.com/Jahnavi-Prudhivi/MudraAI-ASL-To-Speech-Generator-",
+    demo: "https://devpost.com/software/asl-gesture-application"
   },
 
   "traffic-sign": {
@@ -278,7 +335,7 @@ document.querySelectorAll(".project-card").forEach(card => {
     const project = projects[projectID];
 
     modalTitle.textContent = project.title;
-    modalImage.src = project.image;
+    renderMedia(project.media || [{ type: "image", src: project.image }]);
     modalDescription.textContent = project.description;
     modalGithub.href = project.github;
     modalDemo.href = project.demo;
