@@ -1,0 +1,309 @@
+<svg width="100%" viewBox="0 0 680 520" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>How event cameras work — asynchronous pixel events vs frame camera motion blur</title>
+<desc>Top row shows how event cameras detect changes in log intensity per pixel asynchronously, generating a scatter of dots only where motion occurs. Bottom row compares frame camera blur vs event camera sharp output for a moving warehouse pallet.</desc>
+
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <style>
+    /* Dot scatter — random pixels firing */
+    .dot { animation: dot-fire 2s ease-in-out infinite; opacity: 0; }
+    .dot:nth-child(1)  { animation-delay:0.00s; } .dot:nth-child(2)  { animation-delay:0.07s; }
+    .dot:nth-child(3)  { animation-delay:0.14s; } .dot:nth-child(4)  { animation-delay:0.21s; }
+    .dot:nth-child(5)  { animation-delay:0.28s; } .dot:nth-child(6)  { animation-delay:0.35s; }
+    .dot:nth-child(7)  { animation-delay:0.42s; } .dot:nth-child(8)  { animation-delay:0.49s; }
+    .dot:nth-child(9)  { animation-delay:0.56s; } .dot:nth-child(10) { animation-delay:0.63s; }
+    .dot:nth-child(11) { animation-delay:0.70s; } .dot:nth-child(12) { animation-delay:0.77s; }
+    .dot:nth-child(13) { animation-delay:0.84s; } .dot:nth-child(14) { animation-delay:0.91s; }
+    .dot:nth-child(15) { animation-delay:0.98s; } .dot:nth-child(16) { animation-delay:1.05s; }
+    .dot:nth-child(17) { animation-delay:1.12s; } .dot:nth-child(18) { animation-delay:1.19s; }
+    .dot:nth-child(19) { animation-delay:1.26s; } .dot:nth-child(20) { animation-delay:1.33s; }
+    .dot:nth-child(21) { animation-delay:1.40s; } .dot:nth-child(22) { animation-delay:1.47s; }
+    .dot:nth-child(23) { animation-delay:1.54s; } .dot:nth-child(24) { animation-delay:0.10s; }
+    .dot:nth-child(25) { animation-delay:0.33s; } .dot:nth-child(26) { animation-delay:0.66s; }
+    .dot:nth-child(27) { animation-delay:0.99s; } .dot:nth-child(28) { animation-delay:1.20s; }
+    .dot:nth-child(29) { animation-delay:0.45s; } .dot:nth-child(30) { animation-delay:0.85s; }
+    @keyframes dot-fire {
+      0%   { opacity: 0; }
+      12%  { opacity: 1; }
+      28%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    /* Pos events = blue/teal, neg events = red/coral */
+    .dot-pos { fill: #1D9E75; }
+    .dot-neg { fill: #E24B4A; }
+
+    /* Blur trail on frame camera pallet */
+    .blur-pallet { animation: blur-move 2.4s ease-in-out infinite alternate; }
+    @keyframes blur-move { 0% { transform:translateX(0); opacity:0.85; } 100% { transform:translateX(30px); opacity:0.4; } }
+    .blur-ghost  { animation: ghost-move 2.4s ease-in-out infinite alternate; }
+    @keyframes ghost-move { 0% { transform:translateX(0); opacity:0; } 100% { transform:translateX(12px); opacity:0.3; } }
+
+    /* Sharp pallet on event side */
+    .sharp-pallet { animation: sharp-move 2.4s ease-in-out infinite alternate; }
+    @keyframes sharp-move { 0% { transform:translateX(0); } 100% { transform:translateX(30px); } }
+
+    /* Pixel grid on event camera view */
+    .px { animation: px-pulse 1.8s ease-in-out infinite; opacity:0.08; }
+    .px:nth-child(odd)  { animation-delay: 0.0s; }
+    .px:nth-child(even) { animation-delay: 0.9s; }
+    @keyframes px-pulse { 0%,100%{opacity:0.08;} 20%{opacity:1;} 40%{opacity:0.08;} }
+
+    /* Static area — no events */
+    .static-dot { opacity: 0.06; }
+
+    /* Label fade */
+    .lbl { opacity:0; animation: fin 0.5s ease forwards; }
+    .lbl.d1{animation-delay:0.1s;} .lbl.d2{animation-delay:0.25s;}
+    .lbl.d3{animation-delay:0.4s;} .lbl.d4{animation-delay:0.55s;}
+    .lbl.d5{animation-delay:0.7s;} .lbl.d6{animation-delay:0.85s;}
+    @keyframes fin { to { opacity:1; } }
+  </style>
+</defs>
+
+<!-- ════════════════════════════════════════════════════════
+     SECTION 1 — HOW AN EVENT CAMERA SEES (top half)
+     Three panels: Scene → Event scatter → Key properties
+     ════════════════════════════════════════════════════════ -->
+
+<!-- Section label -->
+<rect class="lbl d1" x="14" y="10" width="652" height="22" rx="4" fill="#0C447C" opacity="0.85"/>
+<text class="lbl d1" x="340" y="25" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#ffffff">How an event camera sees the world</text>
+
+<!-- ── Panel A: Scene (warehouse aisle) ── -->
+<rect x="14" y="42" width="184" height="160" rx="6" fill="#F1EFE8" stroke="#b4b2a9" stroke-width="0.8"/>
+<!-- Shelf left -->
+<rect x="24" y="52" width="16" height="140" rx="2" fill="#888780" opacity="0.6"/>
+<rect x="28" y="72" width="8" height="12" rx="1" fill="#5F5E5A" opacity="0.5"/>
+<rect x="28" y="96" width="8" height="12" rx="1" fill="#5F5E5A" opacity="0.5"/>
+<rect x="28" y="120" width="8" height="12" rx="1" fill="#5F5E5A" opacity="0.5"/>
+<!-- Shelf right -->
+<rect x="172" y="52" width="16" height="140" rx="2" fill="#888780" opacity="0.6"/>
+<!-- Floor -->
+<rect x="14" y="178" width="184" height="24" rx="0" fill="#D3D1C7" opacity="0.5"/>
+<!-- Moving forklift + pallet -->
+<rect x="80" y="148" width="60" height="32" rx="3" fill="#854F0B" opacity="0.7"/>
+<line x1="100" y1="148" x2="100" y2="180" stroke="#633806" stroke-width="1" opacity="0.6"/>
+<line x1="120" y1="148" x2="120" y2="180" stroke="#633806" stroke-width="1" opacity="0.6"/>
+<line x1="80" y1="162" x2="140" y2="162" stroke="#633806" stroke-width="1" opacity="0.6"/>
+<!-- Motion arrow -->
+<line x1="148" y1="164" x2="168" y2="164" stroke="#A32D2D" stroke-width="1.5" marker-end="url(#arr)" opacity="0.7"/>
+<!-- Ceiling light (static) -->
+<rect x="90" y="52" width="36" height="10" rx="2" fill="#EF9F27" opacity="0.5"/>
+<!-- Panel A label -->
+<rect x="14" y="42" width="184" height="18" rx="6" fill="#444441" opacity="0.75"/>
+<text x="106" y="54" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#ffffff">Scene</text>
+
+<!-- Arrow A→B -->
+<line x1="202" y1="122" x2="222" y2="122" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- ── Panel B: Event scatter output ── -->
+<rect x="226" y="42" width="220" height="160" rx="6" fill="#0a0a0c" stroke="#0C447C" stroke-width="1"/>
+<rect x="226" y="42" width="220" height="18" rx="6" fill="#0C447C" opacity="0.9"/>
+<text x="336" y="54" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#ffffff">Event output (x, y, t, polarity)</text>
+
+<!-- Static area dots — very faint, no motion = no events -->
+<circle class="static-dot" cx="260" cy="80"  r="1.5" fill="#1D9E75"/>
+<circle class="static-dot" cx="280" cy="95"  r="1.5" fill="#1D9E75"/>
+<circle class="static-dot" cx="248" cy="110" r="1.5" fill="#1D9E75"/>
+<circle class="static-dot" cx="390" cy="85"  r="1.5" fill="#1D9E75"/>
+<circle class="static-dot" cx="410" cy="100" r="1.5" fill="#1D9E75"/>
+<circle class="static-dot" cx="430" cy="80"  r="1.5" fill="#1D9E75"/>
+<text x="310" y="115" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#444441" opacity="0.7">static — no events</text>
+
+<!-- Moving pallet edge — dense event scatter (positive = teal, negative = red) -->
+<!-- Positive events (leading edge) -->
+<circle class="dot dot-pos" cx="322" cy="148" r="2"/>
+<circle class="dot dot-pos" cx="328" cy="152" r="2.5"/>
+<circle class="dot dot-pos" cx="318" cy="156" r="2"/>
+<circle class="dot dot-pos" cx="334" cy="144" r="2"/>
+<circle class="dot dot-pos" cx="326" cy="160" r="1.5"/>
+<circle class="dot dot-pos" cx="330" cy="142" r="2"/>
+<circle class="dot dot-pos" cx="316" cy="162" r="2"/>
+<circle class="dot dot-pos" cx="340" cy="150" r="2.5"/>
+<circle class="dot dot-pos" cx="344" cy="146" r="1.5"/>
+<circle class="dot dot-pos" cx="348" cy="154" r="2"/>
+<circle class="dot dot-pos" cx="336" cy="166" r="2"/>
+<circle class="dot dot-pos" cx="352" cy="160" r="1.5"/>
+<circle class="dot dot-pos" cx="342" cy="158" r="2"/>
+<circle class="dot dot-pos" cx="314" cy="168" r="1.5"/>
+<circle class="dot dot-pos" cx="356" cy="148" r="2"/>
+<!-- Negative events (trailing edge) -->
+<circle class="dot dot-neg" cx="290" cy="148" r="2"/>
+<circle class="dot dot-neg" cx="296" cy="154" r="2.5"/>
+<circle class="dot dot-neg" cx="284" cy="158" r="2"/>
+<circle class="dot dot-neg" cx="302" cy="144" r="1.5"/>
+<circle class="dot dot-neg" cx="288" cy="162" r="2"/>
+<circle class="dot dot-neg" cx="298" cy="142" r="2"/>
+<circle class="dot dot-neg" cx="292" cy="166" r="1.5"/>
+<circle class="dot dot-neg" cx="306" cy="152" r="2"/>
+<circle class="dot dot-neg" cx="280" cy="168" r="2"/>
+<circle class="dot dot-neg" cx="308" cy="160" r="1.5"/>
+<circle class="dot dot-neg" cx="294" cy="170" r="2"/>
+<circle class="dot dot-neg" cx="304" cy="168" r="1.5"/>
+<circle class="dot dot-neg" cx="282" cy="152" r="2"/>
+<circle class="dot dot-neg" cx="310" cy="146" r="2"/>
+<circle class="dot dot-neg" cx="286" cy="144" r="1.5"/>
+
+<!-- Event legend inside panel -->
+<circle cx="236" cy="178" r="3" fill="#1D9E75" opacity="0.9"/>
+<text x="242" y="181" font-family="system-ui,sans-serif" font-size="9" fill="#9FE1CB">positive (ON)</text>
+<circle cx="310" cy="178" r="3" fill="#E24B4A" opacity="0.9"/>
+<text x="316" y="181" font-family="system-ui,sans-serif" font-size="9" fill="#F09595">negative (OFF)</text>
+
+<!-- Arrow B→C -->
+<line x1="450" y1="122" x2="470" y2="122" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- ── Panel C: Key properties ── -->
+<rect x="474" y="42" width="192" height="160" rx="6" fill="#F1EFE8" stroke="#085041" stroke-width="0.8"/>
+<rect x="474" y="42" width="192" height="18" rx="6" fill="#085041" opacity="0.9"/>
+<text x="570" y="54" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#ffffff">Key properties</text>
+
+<!-- Property rows -->
+<rect x="482" y="66" width="176" height="22" rx="3" fill="#E1F5EE" stroke="#9FE1CB" stroke-width="0.5"/>
+<text x="490" y="81" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#085041">Detects log intensity change</text>
+
+<rect x="482" y="92" width="176" height="22" rx="3" fill="#E1F5EE" stroke="#9FE1CB" stroke-width="0.5"/>
+<text x="490" y="107" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#085041">All pixels asynchronous</text>
+
+<rect x="482" y="118" width="176" height="22" rx="3" fill="#E1F5EE" stroke="#9FE1CB" stroke-width="0.5"/>
+<text x="490" y="133" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#085041">1 MHz per-pixel event rate</text>
+
+<rect x="482" y="144" width="176" height="22" rx="3" fill="#E1F5EE" stroke="#9FE1CB" stroke-width="0.5"/>
+<text x="490" y="159" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#085041">~120 dB dynamic range</text>
+
+<rect x="482" y="170" width="176" height="22" rx="3" fill="#9FE1CB" stroke="#1D9E75" stroke-width="0.5"/>
+<text x="490" y="185" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#085041">Zero bandwidth when static</text>
+
+<!-- ════════════════════════════════════════════════════════
+     SECTION 2 — MOTION BLUR COMPARISON (bottom half)
+     ════════════════════════════════════════════════════════ -->
+
+<!-- Section divider -->
+<line x1="14" y1="218" x2="666" y2="218" stroke="#b4b2a9" stroke-width="0.8" stroke-dasharray="4 3"/>
+
+<!-- Section label -->
+<rect class="lbl d3" x="14" y="224" width="652" height="22" rx="4" fill="#444441" opacity="0.85"/>
+<text class="lbl d3" x="340" y="239" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#ffffff">Warehouse application — motion blur vs event output on moving pallet</text>
+
+<!-- ── LEFT: Frame camera ── -->
+<rect x="14" y="254" width="310" height="200" rx="6" fill="#FCEBEB" stroke="#A32D2D" stroke-width="1"/>
+<rect x="14" y="254" width="310" height="24" rx="6" fill="#A32D2D"/>
+<text x="169" y="270" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#ffffff">Frame camera — motion blur</text>
+
+<!-- Floor -->
+<rect x="14" y="426" width="310" height="28" rx="0" fill="#D3D1C7" opacity="0.5"/>
+<!-- Shelf racking -->
+<rect x="24"  y="284" width="12" height="142" rx="2" fill="#888780" opacity="0.5"/>
+<rect x="302" y="284" width="12" height="142" rx="2" fill="#888780" opacity="0.5"/>
+<rect x="24"  y="304" width="72" height="8" rx="1" fill="#B4B2A9" opacity="0.5"/>
+<rect x="24"  y="340" width="72" height="8" rx="1" fill="#B4B2A9" opacity="0.5"/>
+<rect x="236" y="304" width="72" height="8" rx="1" fill="#B4B2A9" opacity="0.5"/>
+<rect x="236" y="340" width="72" height="8" rx="1" fill="#B4B2A9" opacity="0.5"/>
+<!-- Blur ghosts (multiple translucent copies) -->
+<g class="blur-ghost"><rect x="120" y="368" width="80" height="48" rx="3" fill="#854F0B"/></g>
+<g class="blur-ghost" style="animation-delay:0.15s;"><rect x="130" y="368" width="80" height="48" rx="3" fill="#854F0B"/></g>
+<g class="blur-ghost" style="animation-delay:0.3s;"><rect x="140" y="368" width="80" height="48" rx="3" fill="#854F0B"/></g>
+<!-- Main blurred pallet -->
+<g class="blur-pallet">
+  <rect x="120" y="368" width="80" height="48" rx="3" fill="#854F0B" opacity="0.75"/>
+  <line x1="146" y1="368" x2="146" y2="416" stroke="#633806" stroke-width="1.5" opacity="0.5"/>
+  <line x1="174" y1="368" x2="174" y2="416" stroke="#633806" stroke-width="1.5" opacity="0.5"/>
+  <line x1="120" y1="388" x2="200" y2="388" stroke="#633806" stroke-width="1.5" opacity="0.5"/>
+</g>
+<!-- Blur label -->
+<rect x="24" y="364" width="86" height="36" rx="4" fill="#A32D2D" opacity="0.9"/>
+<text x="67" y="378" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#ffffff">Motion blur</text>
+<text x="67" y="392" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#fca5a5">fixed exposure</text>
+<!-- X cross -->
+<circle cx="296" cy="392" r="14" fill="#A32D2D" opacity="0.15"/>
+<line x1="289" y1="385" x2="303" y2="399" stroke="#A32D2D" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="303" y1="385" x2="289" y2="399" stroke="#A32D2D" stroke-width="2.5" stroke-linecap="round"/>
+<!-- Forklift body -->
+<rect x="56" y="390" width="56" height="36" rx="3" fill="#E24B4A" opacity="0.5"/>
+<circle cx="68"  cy="428" r="8" fill="#444441" opacity="0.7"/>
+<circle cx="100" cy="428" r="8" fill="#444441" opacity="0.7"/>
+
+<!-- ── RIGHT: Event camera ── -->
+<rect x="356" y="254" width="310" height="200" rx="6" fill="#0a0a10" stroke="#085041" stroke-width="1"/>
+<rect x="356" y="254" width="310" height="24" rx="6" fill="#085041"/>
+<text x="511" y="270" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#ffffff">Event camera — sharp edge detection</text>
+
+<!-- Static background dots (very faint — no motion = no events) -->
+<circle class="static-dot" cx="380" cy="300" r="1.5" fill="#1D9E75"/>
+<circle class="static-dot" cx="400" cy="320" r="1.5" fill="#1D9E75"/>
+<circle class="static-dot" cx="420" cy="295" r="1.5" fill="#1D9E75"/>
+<circle class="static-dot" cx="610" cy="305" r="1.5" fill="#1D9E75"/>
+<circle class="static-dot" cx="630" cy="290" r="1.5" fill="#1D9E75"/>
+<circle class="static-dot" cx="590" cy="315" r="1.5" fill="#1D9E75"/>
+<text x="511" y="345" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#444441" opacity="0.6">static shelves — zero events</text>
+
+<!-- Floor -->
+<rect x="356" y="426" width="310" height="28" rx="0" fill="#1a1a22" opacity="0.6"/>
+
+<!-- Event scatter on pallet edges only -->
+<g class="sharp-pallet">
+  <!-- Dense dot scatter on pallet outline only -->
+  <!-- Top edge -->
+  <circle class="dot dot-pos" cx="460" cy="368" r="2.5"/>
+  <circle class="dot dot-pos" cx="470" cy="366" r="2"/>
+  <circle class="dot dot-pos" cx="480" cy="368" r="2.5"/>
+  <circle class="dot dot-pos" cx="490" cy="366" r="2"/>
+  <circle class="dot dot-pos" cx="500" cy="368" r="2.5"/>
+  <circle class="dot dot-pos" cx="510" cy="366" r="2"/>
+  <circle class="dot dot-pos" cx="520" cy="368" r="2.5"/>
+  <circle class="dot dot-pos" cx="530" cy="370" r="2"/>
+  <!-- Left edge -->
+  <circle class="dot dot-neg" cx="458" cy="378" r="2"/>
+  <circle class="dot dot-neg" cx="456" cy="390" r="2.5"/>
+  <circle class="dot dot-neg" cx="458" cy="402" r="2"/>
+  <circle class="dot dot-neg" cx="456" cy="412" r="2"/>
+  <!-- Right edge -->
+  <circle class="dot dot-pos" cx="534" cy="378" r="2"/>
+  <circle class="dot dot-pos" cx="536" cy="390" r="2.5"/>
+  <circle class="dot dot-pos" cx="534" cy="402" r="2"/>
+  <circle class="dot dot-pos" cx="536" cy="412" r="2"/>
+  <!-- Bottom edge -->
+  <circle class="dot dot-neg" cx="462" cy="416" r="2"/>
+  <circle class="dot dot-neg" cx="474" cy="418" r="2.5"/>
+  <circle class="dot dot-neg" cx="486" cy="416" r="2"/>
+  <circle class="dot dot-neg" cx="498" cy="418" r="2.5"/>
+  <circle class="dot dot-neg" cx="510" cy="416" r="2"/>
+  <circle class="dot dot-neg" cx="522" cy="418" r="2.5"/>
+  <!-- Interior horizontal slat line events -->
+  <circle class="dot dot-pos" cx="468" cy="388" r="1.5"/>
+  <circle class="dot dot-pos" cx="484" cy="386" r="1.5"/>
+  <circle class="dot dot-pos" cx="500" cy="388" r="1.5"/>
+  <circle class="dot dot-pos" cx="516" cy="386" r="1.5"/>
+  <circle class="dot dot-neg" cx="476" cy="400" r="1.5"/>
+  <circle class="dot dot-neg" cx="492" cy="402" r="1.5"/>
+  <circle class="dot dot-neg" cx="508" cy="400" r="1.5"/>
+  <circle class="dot dot-neg" cx="524" cy="402" r="1.5"/>
+</g>
+
+<!-- Sharp label -->
+<rect x="366" y="364" width="80" height="36" rx="4" fill="#085041" opacity="0.9"/>
+<text x="406" y="378" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#ffffff">Sharp edges</text>
+<text x="406" y="392" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#9FE1CB">no exposure blur</text>
+<!-- Check -->
+<circle cx="642" cy="392" r="14" fill="#085041" opacity="0.15"/>
+<path d="M635 392 L640 398 L650 384" stroke="#1D9E75" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<!-- Forklift body (right) -->
+<rect x="396" y="390" width="56" height="36" rx="3" fill="#0F6E56" opacity="0.5"/>
+<circle cx="408" cy="428" r="8" fill="#444441" opacity="0.7"/>
+<circle cx="440" cy="428" r="8" fill="#444441" opacity="0.7"/>
+
+<!-- ════════════════════════
+     BOTTOM PRINCIPLE STRIP
+     ════════════════════════ -->
+<rect x="14" y="462" width="310" height="44" rx="5" fill="#A32D2D" opacity="0.08" stroke="#A32D2D" stroke-width="0.5"/>
+<text x="169" y="480" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#791F1F">Frame camera failure mode</text>
+<text x="169" y="496" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#A32D2D">All pixels sampled together — fast motion smears over exposure window</text>
+
+<rect x="356" y="462" width="310" height="44" rx="5" fill="#085041" opacity="0.08" stroke="#085041" stroke-width="0.5"/>
+<text x="511" y="480" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#085041">Event camera advantage</text>
+<text x="511" y="496" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#0F6E56">Each pixel fires on log intensity change — no exposure window, no blur</text>
+
+</svg>

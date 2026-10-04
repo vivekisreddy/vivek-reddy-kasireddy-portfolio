@@ -35,6 +35,7 @@
                 <a href="#experience" class="link">Experience</a>
                 <a href="#systems" class="link">Systems</a>
                 <a href="#projects" class="link">Projects</a>
+                <a href="#indepth" class="link">In-Depth</a>
                 <a href="#research" class="link">Research</a>
                 <a href="#skills" class="link">Skills</a>
                 <a href="#contact" class="link">Contact</a>
@@ -708,6 +709,149 @@
                         data-count="5">Show 5 more projects</button>
                     <a class="btn btn-ghost" href="https://github.com/vivekisreddy" target="_blank" rel="noopener">All
                         repos on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== IN-DEPTH ====== -->
+        <!-- Full write-ups and videos live on the companion site (vivekisreddy/perception_portfolio repo) -->
+        <section class="indepth" id="indepth">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <div class="eyebrow">In-Depth</div>
+                    <h2>Deep dives, with video</h2>
+                    <p>Full write-ups of my most notable robotics work: demo videos, system diagrams, and the
+                        engineering decisions behind the numbers.</p>
+                </div>
+
+                <a class="deep-feature reveal" href="https://vivekisreddy.github.io/perception_portfolio/#tapeflyt"
+                    target="_blank" rel="noopener">
+                    <div class="deep-media">
+                        <img src="assets/images/indepth/tapeflyt.jpg"
+                            alt="TapeFlyt quadrotor components: Arducam camera, IR emitter, Jetson Orin Nano, aperture mask and scotch-tape diffuser"
+                            loading="lazy" />
+                        <span class="media-count"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>2 flight videos</span>
+                    </div>
+                    <div class="deep-body">
+                        <div class="proj-tag">Research · PeAR Lab · Co-first author</div>
+                        <h3>TapeFlyt: Lensless Aerial Robot Navigation</h3>
+                        <p>A quadrotor that navigates in complete darkness using scotch tape instead of a lens. A
+                            30 Hz statistical detector gates ADMM reconstruction, cutting onboard compute by over 90%
+                            in sparse scenes, and the full pipeline runs on a Jetson Orin Nano.</p>
+                        <div class="deep-metrics">
+                            <div><b>86.67%</b><span>autonomous navigation success</span></div>
+                            <div><b>14 Hz</b><span>embedded inference on Jetson</span></div>
+                            <div><b>8×</b><span>lighter sensing payload</span></div>
+                            <div><b>60 runs</b><span>across 4 dark environments</span></div>
+                        </div>
+                        <div class="proj-links">
+                            <span class="proj-link">Read the deep dive <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="deep-grid reveal">
+                    <a class="deep-card" href="https://vivekisreddy.github.io/perception_portfolio/#lensless-depth"
+                        target="_blank" rel="noopener">
+                        <div class="deep-thumb">
+                            <img class="fit" src="assets/images/indepth/lensless-depth.jpg"
+                                alt="ADMM lensless reconstruction and obstacle detection pipeline" loading="lazy" />
+                            <span class="media-count"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>1 video · 3 diagrams</span>
+                        </div>
+                        <div class="deep-card-body">
+                            <div class="proj-tag">Perception · Embedded</div>
+                            <h3>Lensless Depth Estimation: ADMM &amp; FISTA</h3>
+                            <p>How I reached 14 Hz reconstruction on a Jetson: careful memory layout, single-iteration
+                                approximations and grayscale-only processing.</p>
+                            <span class="proj-link">Read the deep dive <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+                        </div>
+                    </a>
+
+                    <a class="deep-card" href="https://vivekisreddy.github.io/perception_portfolio/#ros2-navigation"
+                        target="_blank" rel="noopener">
+                        <div class="deep-thumb">
+                            <img class="fit" src="assets/images/indepth/ros2.svg"
+                                alt="ROS 2 SLAM mapping and AMCL localization diagram" loading="lazy" />
+                            <span class="media-count"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>2 videos</span>
+                        </div>
+                        <div class="deep-card-body">
+                            <div class="proj-tag">Navigation · ROS 2</div>
+                            <h3>ROS 2 Autonomous Navigation: TurtleBot3</h3>
+                            <p>SLAM mapping, AMCL localization and custom path planning through unknown mazes, with
+                                real robot runs.</p>
+                            <span class="proj-link">Read the deep dive <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+                        </div>
+                    </a>
+
+                    <a class="deep-card" href="https://vivekisreddy.github.io/perception_portfolio/#solgud-slam"
+                        target="_blank" rel="noopener">
+                        <div class="deep-thumb">
+                            <img src="assets/images/indepth/solgud.jpg"
+                                alt="Solgud Robotics service robot with LiDAR and RGB-D camera" loading="lazy" />
+                            <span class="media-count"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>5 demo videos</span>
+                        </div>
+                        <div class="deep-card-body">
+                            <div class="proj-tag">SLAM · Startup</div>
+                            <h3>SLAM &amp; Localization Debugging: Service Robot</h3>
+                            <p>Fixing SLAM and localization failures on a restaurant and warehouse robot, across 15
+                                successful real-world demos.</p>
+                            <span class="proj-link">Read the deep dive <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+                        </div>
+                    </a>
+
+                    <a class="deep-card" href="https://vivekisreddy.github.io/perception_portfolio/#apriltag"
+                        target="_blank" rel="noopener">
+                        <div class="deep-thumb">
+                            <img src="assets/images/indepth/apriltag.jpg"
+                                alt="Ramp-climbing robot with ultrasonic sensors and AprilTag camera" loading="lazy" />
+                            <span class="media-count"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>3 videos</span>
+                        </div>
+                        <div class="deep-card-body">
+                            <div class="proj-tag">Localization · Multi-robot</div>
+                            <h3>AprilTag Localization: 1 mm Accuracy</h3>
+                            <p>Tag IDs detected by one robot are sent over MQTT to a second robot, which decodes them
+                                to navigate a maze.</p>
+                            <span class="proj-link">Read the deep dive <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+                        </div>
+                    </a>
+
+                    <a class="deep-card" href="https://vivekisreddy.github.io/perception_portfolio/#industrial-arm"
+                        target="_blank" rel="noopener">
+                        <div class="deep-thumb">
+                            <img src="assets/images/indepth/arm.jpg"
+                                alt="5-DOF industrial arm above a checkerboard with colored balls" loading="lazy" />
+                            <span class="media-count"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>2 videos</span>
+                        </div>
+                        <div class="deep-card-body">
+                            <div class="proj-tag">Manipulation · Vision</div>
+                            <h3>Industrial Arm: Real-Time Vision Tracking</h3>
+                            <p>An end-to-end perception-to-actuation pipeline: camera tracking, trajectory generation
+                                and inverse kinematics on a 5-DOF arm.</p>
+                            <span class="proj-link">Read the deep dive <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+                        </div>
+                    </a>
+
+                    <a class="deep-card" href="https://vivekisreddy.github.io/perception_portfolio/#event-cameras"
+                        target="_blank" rel="noopener">
+                        <div class="deep-thumb">
+                            <img class="fit" src="assets/images/indepth/events.svg"
+                                alt="Event camera versus frame camera motion blur comparison" loading="lazy" />
+                            <span class="media-count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>Technical proposal</span>
+                        </div>
+                        <div class="deep-card-body">
+                            <div class="proj-tag">Ideas · Problem analysis</div>
+                            <h3>Event Cameras for Dynamic Scene Perception</h3>
+                            <p>A research-backed analysis of how event cameras could beat motion blur and clutter in
+                                warehouse robot perception.</p>
+                            <span class="proj-link">Read the analysis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="deep-cta reveal">
+                    <p>Every write-up lives on one page, with 15+ videos, diagrams and the full technical detail.</p>
+                    <a class="btn btn-primary" href="https://vivekisreddy.github.io/perception_portfolio/"
+                        target="_blank" rel="noopener">Open the full In-Depth portfolio <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
                 </div>
             </div>
         </section>
