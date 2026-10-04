@@ -5,3 +5,6 @@
 *.mp4
 *.heic
 *.HEIC
+# Local only: reference site and backup of the old vCard layout
+hvadlamani1.github.io-main/
+old-site-backup/
