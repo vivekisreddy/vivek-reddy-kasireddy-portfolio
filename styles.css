@@ -451,6 +451,37 @@ section.hero { border-top: none; }
 
 .tl-item .chip-row { margin-top: 16px; }
 
+/* Company logo beside each role. Tiles stay white in both themes so brand colors read true. */
+.tl-head { display: flex; align-items: center; gap: 16px; }
+
+.tl-logo {
+    width: 52px;
+    height: 52px;
+    flex: none;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: #ffffff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+}
+
+.tl-logo img { width: 100%; height: 100%; object-fit: contain; }
+.tl-logo.padded img { padding: 9px; }
+
+.tl-logo.mono {
+    background: var(--accent-tint);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+}
+
+:root[data-theme="dark"] .tl-logo { border-color: transparent; }
+:root[data-theme="dark"] .tl-logo.mono { color: var(--accent-strong); border-color: var(--line); }
+
 /* ---------- SYSTEMS (pipeline) ---------- */
 .systems { background: var(--bg-alt); }
 
@@ -482,6 +513,14 @@ section.hero { border-top: none; }
     color: var(--on-accent);
     margin-bottom: 14px;
 }
+
+.sub-head { margin: 56px 0 22px; max-width: 680px; }
+.sub-head.first { margin-top: 0; }
+.sub-head h3 { font-size: 22px; }
+.sub-head p { color: var(--muted); margin-top: 6px; font-size: 16px; }
+
+/* AI stack steps get a slate-blue number so the two loops read as distinct */
+.pipeline.ai .step::before { background: var(--slate); color: #ffffff; }
 
 .step h3 { font-size: 16px; margin-bottom: 8px; }
 .step p { font-size: 14px; color: var(--ink-soft); }
@@ -622,6 +661,42 @@ section.hero { border-top: none; }
 .proj-card:hover .proj-link svg { transform: translate(2px, -2px); }
 .proj-note { margin-top: 18px; font-size: 13px; font-weight: 600; color: var(--muted); }
 
+/* ---------- PUBLICATIONS ---------- */
+.pub-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    align-items: start;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 6px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    box-shadow: var(--shadow);
+}
+
+.pub-venue {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.pub-card h3 { font-size: 22px; line-height: 1.25; }
+.pub-authors { margin-top: 8px; color: var(--ink-soft); font-size: 15px; }
+.pub-authors b { color: var(--ink); }
+.pub-meta { margin-top: 4px; color: var(--muted); font-size: 14px; }
+.pub-card > div > p.pub-about { margin-top: 14px; color: var(--ink-soft); font-size: 15.5px; max-width: 720px; }
+.pub-card .proj-links { margin-top: 16px; }
+
 /* ---------- SKILLS ---------- */
 .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 48px; }
 .skill-cat h3 { font-size: 15px; margin-bottom: 12px; }
@@ -730,6 +805,7 @@ footer a:hover { color: var(--accent); }
     .skills-grid { grid-template-columns: 1fr; }
     .tl-item { grid-template-columns: 1fr; gap: 8px; }
     .contact-box { padding: 44px 30px; }
+    .pub-card { grid-template-columns: 1fr; padding: 28px 24px; }
 }
 
 /* Collapse the nav into a menu before it gets crowded */
